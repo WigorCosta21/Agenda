@@ -10,7 +10,7 @@ const MongoStore = require('connect-mongo')
 const flash = require('connect-flash')
 const helmet = require('helmet')
 const csrf = require('csurf')
-const {checkCsrfError, csrfMiddleware} = require('./src/middlewares/middleware')
+const {checkCsrfError, csrfMiddleware, middlewareGloba} = require('./src/middlewares/middleware')
 
 mongoose.set("strictQuery", true);
 
@@ -46,6 +46,7 @@ app.set('view engine', 'ejs')
 app.use(csrf())
 app.use(checkCsrfError)
 app.use(csrfMiddleware)
+app.use(middlewareGloba)
 app.use(routes)
 
 app.listen(3000, () => {
