@@ -22,6 +22,7 @@ mongoose.connect(process.env.CONNECTIONSTRING, {useNewUrlParser: true, useUnifie
 })
 
 app.use(helmet())
+app.use(helmet.referrerPolicy({policy: ["origin", "unsafe-url"]}));
 app.use(express.urlencoded({extended: true}))
 app.use(express.static(path.resolve(__dirname, 'public')))
 
